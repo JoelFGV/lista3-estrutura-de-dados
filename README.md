@@ -6,7 +6,7 @@ Este projeto implementa um sistema simples de matchmaking para jogos online em C
 
 O sistema gerencia jogadores que estão aguardando para entrar em uma partida. Cada jogador possui um identificador único, um nome, um score que representa seu nível de habilidade e um timestamp que representa sua ordem de chegada na fila.
 
-A principal finalidade do sistema é armazenar esses jogadores, ordená-los por nível de habilidade e formar grupos com jogadores de scores próximos. Para isso, o projeto utiliza algoritmos de ordenação implementados manualmente, sem o uso de funções prontas como `std::sort`.
+A principal finalidade do sistema é armazenar esses jogadores, ordená-los por nível de habilidade e formar grupos com jogadores de scores próximos.
 
 O sistema permite:
 
