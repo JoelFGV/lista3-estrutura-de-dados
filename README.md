@@ -64,7 +64,7 @@ No Windows, a execução também pode ser feita com:
 matchmaking.exe
 ```
 
-## Organização interna dos dados
+## Organização interna dos dados e implementação dos métodos
 
 Internamente, o sistema foi implementado com estruturas manuais, sem uso de estruturas da STL como `vector`, `list`, `map`, `queue` ou `stack`.
 
