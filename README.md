@@ -287,25 +287,3 @@ O objetivo é observar, na prática, a diferença entre os custos computacionais
 - merge sort: `O(n log n)`.
 
 Como esperado, para uma quantidade maior de jogadores, o merge sort tende a apresentar desempenho melhor que o insertion sort.
-
-## Observações sobre gerenciamento de memória
-
-Alguns métodos retornam arrays alocados dinamicamente, como:
-
-- `formGroup`;
-- `getWaitingPlayers`.
-
-Por isso, sempre que esses métodos retornarem um ponteiro diferente de `nullptr`, a memória deve ser liberada no código que chamou a função.
-
-Exemplo:
-
-```cpp
-Player* grupo = matchmaking.formGroup(3, 100, &n);
-
-if (grupo != nullptr) {
-    // uso do grupo
-    delete[] grupo;
-}
-```
-
-Esse cuidado evita vazamentos de memória durante a execução do programa.
