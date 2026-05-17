@@ -97,33 +97,44 @@ int main() {
     }
 
 
-    printDivider("8. TESTE DE PERFORMANCE COM 10000 JOGADORES");
-    int test_size = 10000;
+    printDivider("8. TESTE DE PERFORMANCE COM 10 TAMANHOS DIFERENTES");
 
-    // Merge
-    Matchmaking* perfMerge = new Matchmaking();
-    for(int i = 0; i < test_size; i++) {
-        perfMerge->insert(Player(i, "Bot", rand() % 5000, i));
+    int test_sizes[6] = {500, 1000, 2000, 4000, 8000, 16000};
+
+    for(int t = 0; t < 6; t++) {
+        int current_size = test_sizes[t];
+        cout << "\n>>> TESTANDO COM " << current_size << " JOGADORES <<<" << endl;
+
+        // --- TESTE MERGE SORT ---
+        Matchmaking* perfMerge = new Matchmaking();
+        for(int i = 0; i < current_size; i++) {
+            perfMerge->insert(Player(i, "Bot", rand() % 5000, i));
+        }
+        
+        auto startM = chrono::high_resolution_clock::now();
+        perfMerge->sortByScoreMerge();
+        auto endM = chrono::high_resolution_clock::now();
+        
+        chrono::duration<double, milli> tMerge = endM - startM;
+        cout << "Tempo Merge Sort:    " << tMerge.count() << " ms" << endl;
+        delete perfMerge;
+
+        // --- TESTE INSERTION SORT ---
+        Matchmaking* perfInsert = new Matchmaking();
+        for(int i = 0; i < current_size; i++) {
+            perfInsert->insert(Player(i, "Bot", rand() % 5000, i));
+        }
+        
+        auto startI = chrono::high_resolution_clock::now();
+        perfInsert->sortByScoreInsertion();
+        auto endI = chrono::high_resolution_clock::now();
+        
+        chrono::duration<double, milli> tInsert = endI - startI;
+        cout << "Tempo Insertion Sort: " << tInsert.count() << " ms" << endl;
+        delete perfInsert;
+        
+        cout << "-----------------------------------------------" << endl;
     }
-    auto startM = chrono::high_resolution_clock::now();
-    perfMerge->sortByScoreMerge();
-    auto endM = chrono::high_resolution_clock::now();
-    chrono::duration<double, milli> tMerge = endM - startM;
-    cout << "Tempo Merge Sort: " << tMerge.count() << " ms" << endl;
-    delete perfMerge;
-
-    // Insertion
-    Matchmaking* perfInsert = new Matchmaking();
-    for(int i = 0; i < test_size; i++) {
-        perfInsert->insert(Player(i, "Bot", rand() % 5000, i));
-    }
-    auto startI = chrono::high_resolution_clock::now();
-    perfInsert->sortByScoreInsertion();
-    auto endI = chrono::high_resolution_clock::now();
-    chrono::duration<double, milli> tInsert = endI - startI;
-    cout << "Tempo Insertion Sort: " << tInsert.count() << " ms" << endl;
-    delete perfInsert;
-
 
     // LIMPEZA FINAL
     delete sistemaPtr;
