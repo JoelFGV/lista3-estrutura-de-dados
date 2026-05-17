@@ -97,7 +97,7 @@ int main() {
     }
 
 
-    printDivider("8. TESTE DE PERFORMANCE COM 10 TAMANHOS DIFERENTES");
+    printDivider("8. TESTE DE PERFORMANCE COM 6 TAMANHOS DIFERENTES");
 
     int test_sizes[6] = {500, 1000, 2000, 4000, 8000, 16000};
 
